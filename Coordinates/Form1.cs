@@ -78,7 +78,8 @@ namespace Coordinates
             OpenFileDialog theDialog = new OpenFileDialog();
             theDialog.Title = "Open Text File";
             theDialog.Filter = "TXT files|*.txt";
-            theDialog.InitialDirectory = @"C:\";
+     
+            theDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (theDialog.ShowDialog() == DialogResult.OK)
             {
                 FileStream fs = new FileStream(theDialog.FileName, FileMode.Open, FileAccess.Read);
@@ -87,23 +88,41 @@ namespace Coordinates
                 List<string> listA = new List<string>();
                 List<string> listB = new List<string>();
                 List<string> listC = new List<string>();
+                List<string> listName = new List<string>();
 
                 using (var reader = new  StreamReader(fs))
                 {
-                    
+
                     while (!reader.EndOfStream)
                     {
                         var line = reader.ReadLine();
                         var values = line.Split(';');
 
-                        listA.Add(values[0]);
-                        listB.Add(values[1]);
-                        listC.Add(values[2]);
+                        listName.Add(values[0]);
+                        listA.Add(values[1]);
+                        listB.Add(values[2]);
+                        listC.Add(values[3]);
                     }
+                    
                 }
-
+                try
+                {
+                    List<double> listA_double1 = listA.Select(x => double.Parse(x)).ToList();
+                    List<double> listB_double1 = listB.Select(x => double.Parse(x)).ToList();
+                }
+                catch (FormatException)
+                {
+                    
+                    System.Windows.Forms.MessageBox.Show("Въведете коректни данни");
+                    return;
+                    
+                }
                 List<double> listA_double = listA.Select(x => double.Parse(x)).ToList();
                 List<double> listB_double = listB.Select(x => double.Parse(x)).ToList();
+
+
+
+
 
                 for (var i = 0; i < listA_double.Count; i++)
                 {
@@ -118,7 +137,7 @@ namespace Coordinates
 
                 string CoordString="";
                 for (var i = 0; i < listA_double.Count; i++) { 
-                    CoordString += listA_double[i]+";"+ listB_double[i]+";"+listC[i]+ "\r\n";
+                    CoordString += listName[i]+";"+listA_double[i]+";"+ listB_double[i]+";"+listC[i]+ "\r\n";
                 }
 
                 this.textBox5.Text = CoordString;
@@ -135,7 +154,7 @@ namespace Coordinates
 
         }
 
-        private void save1_Click(object sender, EventArgs e)
+        private void SaveCoord(string CoordText)
         {
             // Displays a SaveFileDialog so the user can save the Image
             // assigned to Button2.
@@ -153,16 +172,22 @@ namespace Coordinates
 
                 StreamWriter m_WriterParameter = new StreamWriter(fs);
                 m_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
-                m_WriterParameter.Write(this.textBox5.Text);
+                m_WriterParameter.Write(CoordText);
                 m_WriterParameter.Flush();
                 m_WriterParameter.Close();
-                
-
-
                 fs.Close();
             }
+        
+    }
+
+        private void save1_Click(object sender, EventArgs e)
+        {
+            SaveCoord(this.textBox5.Text);    
         }
 
-       
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.textBox5.Text = this.textBox5.Text.Replace(" ", "");
+        }
     }
 }

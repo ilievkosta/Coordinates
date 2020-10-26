@@ -46,6 +46,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -185,6 +186,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button5);
             this.tabPage2.Controls.Add(this.save1);
             this.tabPage2.Controls.Add(this.textBox5);
             this.tabPage2.Controls.Add(this.button4);
@@ -233,6 +235,16 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(24, 66);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(147, 21);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "Премахни празни места";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,6 +282,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button save1;
+        private System.Windows.Forms.Button button5;
     }
 }
 
