@@ -121,21 +121,37 @@ namespace Coordinates
                 List<double> listB_double = listB.Select(x => double.Parse(x)).ToList();
 
 
-
-
-
-                for (var i = 0; i < listA_double.Count; i++)
+                if (radioMto70.Checked == true)
                 {
-                    listA_double[i] = listA_double[i] + 4580000;
+                    for (var i = 0; i < listA_double.Count; i++)
+                    {
+                        listA_double[i] = listA_double[i] + 4580000;
+                    }
+
+
+                    for (var i = 0; i < listB_double.Count; i++)
+                    {
+                        listB_double[i] = listB_double[i] + 9430000;
+                    }
+                }
+
+                if (radio70toM.Checked == true)
+                {
+                    for (var i = 0; i < listA_double.Count; i++)
+                    {
+                        listA_double[i] = listA_double[i] - 4580000;
+                    }
+
+
+                    for (var i = 0; i < listB_double.Count; i++)
+                    {
+                        listB_double[i] = listB_double[i] - 9430000;
+                    }
+
                 }
 
 
-                for (var i = 0; i < listB_double.Count; i++)
-                {
-                    listB_double[i] = listB_double[i] + 9430000;
-                }
-
-                string CoordString="";
+                    string CoordString="";
                 for (var i = 0; i < listA_double.Count; i++) { 
                     CoordString += listName[i]+";"+listA_double[i]+";"+ listB_double[i]+";"+listC[i]+ "\r\n";
                 }
@@ -182,12 +198,34 @@ namespace Coordinates
 
         private void save1_Click(object sender, EventArgs e)
         {
-            SaveCoord(this.textBox5.Text);    
+            SaveCoord(this.textBox5.Text);
+        
+
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             this.textBox5.Text = this.textBox5.Text.Replace(" ", "");
+        }
+
+        private void radioMto70_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonHelp_Click(object sender, EventArgs e)
+        {
+
+          //  Cord CN = new Cord("Ime",343, 5434, 45,";") ;
+            //string message=CN.CordPrint();
+
+           string message = "Координатите се записват в текстов файл (.txt) с" +
+               "разделител ';' Десетичен разделител запетая ',' - пример" +
+                "\n" +
+               "point1;34567,2;45671;12" +
+                "\n" +
+                "point2;56785;32457;17";
+            MessageBox.Show(message);
         }
     }
 }

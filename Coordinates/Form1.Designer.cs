@@ -42,11 +42,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.radio70toM = new System.Windows.Forms.RadioButton();
+            this.radioMto70 = new System.Windows.Forms.RadioButton();
+            this.button5 = new System.Windows.Forms.Button();
             this.save1 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button5 = new System.Windows.Forms.Button();
+            this.buttonHelp = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -186,6 +189,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.buttonHelp);
+            this.tabPage2.Controls.Add(this.radio70toM);
+            this.tabPage2.Controls.Add(this.radioMto70);
             this.tabPage2.Controls.Add(this.button5);
             this.tabPage2.Controls.Add(this.save1);
             this.tabPage2.Controls.Add(this.textBox5);
@@ -195,13 +201,46 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(576, 283);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Малки към 1970 от файл";
+            this.tabPage2.Text = "Избор от файл";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // radio70toM
+            // 
+            this.radio70toM.AutoSize = true;
+            this.radio70toM.Location = new System.Drawing.Point(173, 24);
+            this.radio70toM.Name = "radio70toM";
+            this.radio70toM.Size = new System.Drawing.Size(111, 17);
+            this.radio70toM.TabIndex = 5;
+            this.radio70toM.Text = "70 към Руднични";
+            this.radio70toM.UseVisualStyleBackColor = true;
+            // 
+            // radioMto70
+            // 
+            this.radioMto70.AutoSize = true;
+            this.radioMto70.Checked = true;
+            this.radioMto70.Location = new System.Drawing.Point(24, 21);
+            this.radioMto70.Name = "radioMto70";
+            this.radioMto70.Size = new System.Drawing.Size(111, 17);
+            this.radioMto70.TabIndex = 4;
+            this.radioMto70.TabStop = true;
+            this.radioMto70.Text = "Руднични към 70";
+            this.radioMto70.UseVisualStyleBackColor = true;
+            this.radioMto70.CheckedChanged += new System.EventHandler(this.radioMto70_CheckedChanged);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(24, 74);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(147, 21);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "Премахни празни места";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // save1
             // 
             this.save1.BackColor = System.Drawing.Color.Gray;
-            this.save1.Location = new System.Drawing.Point(200, 33);
+            this.save1.Location = new System.Drawing.Point(426, 47);
             this.save1.Name = "save1";
             this.save1.Size = new System.Drawing.Size(125, 23);
             this.save1.TabIndex = 2;
@@ -212,19 +251,19 @@
             // textBox5
             // 
             this.textBox5.AcceptsTab = true;
-            this.textBox5.Location = new System.Drawing.Point(22, 103);
+            this.textBox5.Location = new System.Drawing.Point(24, 151);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
             this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox5.Size = new System.Drawing.Size(418, 138);
+            this.textBox5.Size = new System.Drawing.Size(399, 126);
             this.textBox5.TabIndex = 1;
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(22, 33);
+            this.button4.Location = new System.Drawing.Point(426, 18);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(116, 23);
+            this.button4.Size = new System.Drawing.Size(125, 23);
             this.button4.TabIndex = 0;
             this.button4.Text = "Избери файл";
             this.button4.UseVisualStyleBackColor = true;
@@ -235,23 +274,25 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // button5
+            // buttonHelp
             // 
-            this.button5.Location = new System.Drawing.Point(24, 66);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(147, 21);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "Премахни празни места";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.buttonHelp.Location = new System.Drawing.Point(426, 76);
+            this.buttonHelp.Name = "buttonHelp";
+            this.buttonHelp.Size = new System.Drawing.Size(125, 23);
+            this.buttonHelp.TabIndex = 6;
+            this.buttonHelp.Text = "buttonHelp";
+            this.buttonHelp.UseVisualStyleBackColor = true;
+            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(597, 324);
+            this.ClientSize = new System.Drawing.Size(634, 411);
             this.Controls.Add(this.tabControl1);
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "Form1";
+            this.ShowInTaskbar = false;
             this.Text = "Координати Марица";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -283,6 +324,9 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button save1;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.RadioButton radio70toM;
+        private System.Windows.Forms.RadioButton radioMto70;
+        private System.Windows.Forms.Button buttonHelp;
     }
 }
 
