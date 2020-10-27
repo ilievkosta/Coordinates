@@ -77,7 +77,7 @@ namespace Coordinates
         {
             OpenFileDialog theDialog = new OpenFileDialog();
             theDialog.Title = "Open Text File";
-            theDialog.Filter = "TXT files|*.txt";
+            theDialog.Filter = "TXT files|*.txt|CSV files |*.csv";
      
             theDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (theDialog.ShowDialog() == DialogResult.OK)
@@ -92,69 +92,92 @@ namespace Coordinates
 
                 using (var reader = new  StreamReader(fs))
                 {
+                 
 
-                    while (!reader.EndOfStream)
+                        while (!reader.EndOfStream)
                     {
                         var line = reader.ReadLine();
-                        var values = line.Split(';');
+                       
 
-                        listName.Add(values[0]);
-                        listA.Add(values[1]);
-                        listB.Add(values[2]);
-                        listC.Add(values[3]);
+                        if (radio70toM.Checked ^ radioMto70.Checked )
+                        {
+                            var values = line.Split(';');
+                            listName.Add(values[0]);
+                            listA.Add(values[1]);
+                            listB.Add(values[2]);
+                            listC.Add(values[3]);
+                        }
+                        else
+                        {
+                            var values = line.Split(',');
+                          
+                            listName.Add(values[0].Replace(".", ",")); 
+                     
+                            listA.Add(values[1].Replace(".", ","));
+                        
+                            listB.Add(values[2].Replace(".", ","));
+                           
+                            listC.Add(values[3].Replace(".", ","));
+                        }
                     }
                     
                 }
-                try
+                string CoordString = "";
+                for (var i = 0; i < listA.Count; i++)
                 {
-                    List<double> listA_double1 = listA.Select(x => double.Parse(x)).ToList();
-                    List<double> listB_double1 = listB.Select(x => double.Parse(x)).ToList();
-                }
-                catch (FormatException)
-                {
-                    
-                    System.Windows.Forms.MessageBox.Show("Въведете коректни данни");
-                    return;
-                    
-                }
-                List<double> listA_double = listA.Select(x => double.Parse(x)).ToList();
-                List<double> listB_double = listB.Select(x => double.Parse(x)).ToList();
-
-
-                if (radioMto70.Checked == true)
-                {
-                    for (var i = 0; i < listA_double.Count; i++)
-                    {
-                        listA_double[i] = listA_double[i] + 4580000;
-                    }
-
-
-                    for (var i = 0; i < listB_double.Count; i++)
-                    {
-                        listB_double[i] = listB_double[i] + 9430000;
-                    }
+                    CoordString += listName[i] + ";" + listA[i] + ";" + listB[i] + ";" + listC[i] + "\r\n";
                 }
 
-                if (radio70toM.Checked == true)
-                {
-                    for (var i = 0; i < listA_double.Count; i++)
-                    {
-                        listA_double[i] = listA_double[i] - 4580000;
-                    }
+                // try
+                // {
+                // List<double> listA_double1 = listA.Select(x => double.Parse(x)).ToList();
+                // List<double> listB_double1 = listB.Select(x => double.Parse(x)).ToList();
+                // }
+                // catch (FormatException)
+                // {
+
+                // System.Windows.Forms.MessageBox.Show("Въведете коректни данни");
+                // return;
+
+                //   }
+                //  List<double> listA_double = listA.Select(x => double.Parse(x)).ToList();
+                //  List<double> listB_double = listB.Select(x => double.Parse(x)).ToList();
 
 
-                    for (var i = 0; i < listB_double.Count; i++)
-                    {
-                        listB_double[i] = listB_double[i] - 9430000;
-                    }
+                // if (radioMto70.Checked == true)
+                // {
+                //   for (var i = 0; i < listA_double.Count; i++)
+                //   {
+                //      listA_double[i] = listA_double[i] + 4580000;
+                //   }
 
-                }
+
+                //  for (var i = 0; i < listB_double.Count; i++)
+                //  {
+                //    listB_double[i] = listB_double[i] + 9430000;
+                //  }
+                // }
+
+                // if (radio70toM.Checked == true)
+                // {
+                //   for (var i = 0; i < listA_double.Count; i++)
+                //   {
+                //      listA_double[i] = listA_double[i] - 4580000;
+                //   }
 
 
-                    string CoordString="";
-                for (var i = 0; i < listA_double.Count; i++) { 
-                    CoordString += listName[i]+";"+listA_double[i]+";"+ listB_double[i]+";"+listC[i]+ "\r\n";
-                }
+                //    for (var i = 0; i < listB_double.Count; i++)
+                //  {
+                //      listB_double[i] = listB_double[i] - 9430000;
+                //   }
+
+                //   }
+
+
+               // string CoordString="";
+              //  for (var i = 0; i < listA_double.Count; i++) { 
+             //       CoordString += listName[i]+";"+listA_double[i]+";"+ listB_double[i]+";"+listC[i]+ "\r\n";
+              //  }
 
                 this.textBox5.Text = CoordString;
 
@@ -176,6 +199,7 @@ namespace Coordinates
             // assigned to Button2.
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Text Files | *.txt";
+            //|Gif Image (.gif)|*.gif
             saveFileDialog1.Title = "Save an Text File";
             saveFileDialog1.ShowDialog();
 
@@ -215,16 +239,15 @@ namespace Coordinates
 
         private void buttonHelp_Click(object sender, EventArgs e)
         {
-
-          //  Cord CN = new Cord("Ime",343, 5434, 45,";") ;
+            //  Cord CN = new Cord("Ime",343, 5434, 45,";") ;
             //string message=CN.CordPrint();
 
-           string message = "Координатите се записват в текстов файл (.txt) с" +
-               "разделител ';' Десетичен разделител запетая ',' - пример" +
-                "\n" +
-               "point1;34567,2;45671;12" +
-                "\n" +
-                "point2;56785;32457;17";
+            string message = "Координатите се записват в текстов файл (.txt) с" +
+                "разделител ';' Десетичен разделител запетая ',' - пример" +
+                 "\n" +
+                "point1;34567,2;45671;12" +
+                 "\n" +
+                 "point2;56785;32457;17";
             MessageBox.Show(message);
         }
     }

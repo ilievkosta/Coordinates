@@ -42,6 +42,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.buttonHelp = new System.Windows.Forms.Button();
             this.radio70toM = new System.Windows.Forms.RadioButton();
             this.radioMto70 = new System.Windows.Forms.RadioButton();
             this.button5 = new System.Windows.Forms.Button();
@@ -49,7 +50,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.buttonHelp = new System.Windows.Forms.Button();
+            this.TrimbleCSV = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -189,6 +190,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.TrimbleCSV);
             this.tabPage2.Controls.Add(this.buttonHelp);
             this.tabPage2.Controls.Add(this.radio70toM);
             this.tabPage2.Controls.Add(this.radioMto70);
@@ -203,6 +205,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Избор от файл";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // buttonHelp
+            // 
+            this.buttonHelp.Location = new System.Drawing.Point(426, 102);
+            this.buttonHelp.Name = "buttonHelp";
+            this.buttonHelp.Size = new System.Drawing.Size(125, 23);
+            this.buttonHelp.TabIndex = 6;
+            this.buttonHelp.Text = "buttonHelp";
+            this.buttonHelp.UseVisualStyleBackColor = true;
+            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
             // 
             // radio70toM
             // 
@@ -240,7 +252,7 @@
             // save1
             // 
             this.save1.BackColor = System.Drawing.Color.Gray;
-            this.save1.Location = new System.Drawing.Point(426, 47);
+            this.save1.Location = new System.Drawing.Point(426, 58);
             this.save1.Name = "save1";
             this.save1.Size = new System.Drawing.Size(125, 23);
             this.save1.TabIndex = 2;
@@ -274,15 +286,16 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // buttonHelp
+            // TrimbleCSV
             // 
-            this.buttonHelp.Location = new System.Drawing.Point(426, 76);
-            this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Size = new System.Drawing.Size(125, 23);
-            this.buttonHelp.TabIndex = 6;
-            this.buttonHelp.Text = "buttonHelp";
-            this.buttonHelp.UseVisualStyleBackColor = true;
-            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
+            this.TrimbleCSV.AutoSize = true;
+            this.TrimbleCSV.Location = new System.Drawing.Point(24, 45);
+            this.TrimbleCSV.Name = "TrimbleCSV";
+            this.TrimbleCSV.Size = new System.Drawing.Size(80, 17);
+            this.TrimbleCSV.TabIndex = 7;
+            this.TrimbleCSV.TabStop = true;
+            this.TrimbleCSV.Text = "TrimbleCSV";
+            this.TrimbleCSV.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -327,6 +340,7 @@
         private System.Windows.Forms.RadioButton radio70toM;
         private System.Windows.Forms.RadioButton radioMto70;
         private System.Windows.Forms.Button buttonHelp;
+        private System.Windows.Forms.RadioButton TrimbleCSV;
     }
 }
 
