@@ -15,8 +15,8 @@ namespace Coordinates
 {
     public partial class Form1 : Form
     {
-       
 
+        List<Cord> CurrentCord = new List<Cord>();
 
         public Form1()
         {
@@ -119,44 +119,19 @@ namespace Coordinates
                 }
                 List<double> listA_double = listA.Select(x => double.Parse(x)).ToList();
                 List<double> listB_double = listB.Select(x => double.Parse(x)).ToList();
+                List<double> listC_double = listC.Select(x => double.Parse(x)).ToList();
 
-
-                if (radioMto70.Checked == true)
-                {
-                    for (var i = 0; i < listA_double.Count; i++)
-                    {
-                        listA_double[i] = listA_double[i] + 4580000;
-                    }
-
-
-                    for (var i = 0; i < listB_double.Count; i++)
-                    {
-                        listB_double[i] = listB_double[i] + 9430000;
-                    }
-                }
-
-                if (radio70toM.Checked == true)
-                {
-                    for (var i = 0; i < listA_double.Count; i++)
-                    {
-                        listA_double[i] = listA_double[i] - 4580000;
-                    }
-
-
-                    for (var i = 0; i < listB_double.Count; i++)
-                    {
-                        listB_double[i] = listB_double[i] - 9430000;
-                    }
-
-                }
-
-
-                    string CoordString="";
+                string CoordString="";
                 for (var i = 0; i < listA_double.Count; i++) { 
                     CoordString += listName[i]+";"+listA_double[i]+";"+ listB_double[i]+";"+listC[i]+ "\r\n";
-                }
 
-                this.textBox5.Text = CoordString;
+                    CurrentCord.Add(new Cord(listName[i], listA_double[i], listB_double[i], listC_double[i]));
+
+
+
+                }
+                string output = Cord.printCord(CurrentCord, ";", "\r\n");
+                this.textBox5.Text = output;
 
                 sr.Close();
                 fs.Close();
@@ -199,7 +174,8 @@ namespace Coordinates
         private void save1_Click(object sender, EventArgs e)
         {
             SaveCoord(this.textBox5.Text);
-        
+            string output = Cord.printCord(CurrentCord, ";", "\r\n");
+            this.textBox5.Text = output;
 
         }
 
@@ -216,8 +192,7 @@ namespace Coordinates
         private void buttonHelp_Click(object sender, EventArgs e)
         {
 
-          //  Cord CN = new Cord("Ime",343, 5434, 45,";") ;
-            //string message=CN.CordPrint();
+       
 
            string message = "Координатите се записват в текстов файл (.txt) с" +
                "разделител ';' Десетичен разделител запетая ',' - пример" +
@@ -226,6 +201,20 @@ namespace Coordinates
                 "\n" +
                 "point2;56785;32457;17";
             MessageBox.Show(message);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Cord.B70toM(CurrentCord);
+            string output = Cord.printCord(CurrentCord, ";", "\r\n");
+            this.textBox5.Text = output;
+        }
+
+        private void buttonToBig_Click(object sender, EventArgs e)
+        {
+            Cord.Mto1970(CurrentCord);
+            string output = Cord.printCord(CurrentCord, ";", "\r\n");
+            this.textBox5.Text = output;
         }
     }
 }

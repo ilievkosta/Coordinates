@@ -42,14 +42,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.radio70toM = new System.Windows.Forms.RadioButton();
-            this.radioMto70 = new System.Windows.Forms.RadioButton();
+            this.buttonHelp = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.save1 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.buttonHelp = new System.Windows.Forms.Button();
+            this.ButtonToSmall = new System.Windows.Forms.Button();
+            this.buttonToBig = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -189,9 +189,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.buttonToBig);
+            this.tabPage2.Controls.Add(this.ButtonToSmall);
             this.tabPage2.Controls.Add(this.buttonHelp);
-            this.tabPage2.Controls.Add(this.radio70toM);
-            this.tabPage2.Controls.Add(this.radioMto70);
             this.tabPage2.Controls.Add(this.button5);
             this.tabPage2.Controls.Add(this.save1);
             this.tabPage2.Controls.Add(this.textBox5);
@@ -204,34 +204,21 @@
             this.tabPage2.Text = "Избор от файл";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // radio70toM
+            // buttonHelp
             // 
-            this.radio70toM.AutoSize = true;
-            this.radio70toM.Location = new System.Drawing.Point(173, 24);
-            this.radio70toM.Name = "radio70toM";
-            this.radio70toM.Size = new System.Drawing.Size(111, 17);
-            this.radio70toM.TabIndex = 5;
-            this.radio70toM.Text = "70 към Руднични";
-            this.radio70toM.UseVisualStyleBackColor = true;
-            // 
-            // radioMto70
-            // 
-            this.radioMto70.AutoSize = true;
-            this.radioMto70.Checked = true;
-            this.radioMto70.Location = new System.Drawing.Point(24, 21);
-            this.radioMto70.Name = "radioMto70";
-            this.radioMto70.Size = new System.Drawing.Size(111, 17);
-            this.radioMto70.TabIndex = 4;
-            this.radioMto70.TabStop = true;
-            this.radioMto70.Text = "Руднични към 70";
-            this.radioMto70.UseVisualStyleBackColor = true;
-            this.radioMto70.CheckedChanged += new System.EventHandler(this.radioMto70_CheckedChanged);
+            this.buttonHelp.Location = new System.Drawing.Point(426, 76);
+            this.buttonHelp.Name = "buttonHelp";
+            this.buttonHelp.Size = new System.Drawing.Size(125, 23);
+            this.buttonHelp.TabIndex = 6;
+            this.buttonHelp.Text = "buttonHelp";
+            this.buttonHelp.UseVisualStyleBackColor = true;
+            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(24, 74);
+            this.button5.Location = new System.Drawing.Point(23, 99);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(147, 21);
+            this.button5.Size = new System.Drawing.Size(147, 26);
             this.button5.TabIndex = 3;
             this.button5.Text = "Премахни празни места";
             this.button5.UseVisualStyleBackColor = true;
@@ -274,15 +261,25 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // buttonHelp
+            // ButtonToSmall
             // 
-            this.buttonHelp.Location = new System.Drawing.Point(426, 76);
-            this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Size = new System.Drawing.Size(125, 23);
-            this.buttonHelp.TabIndex = 6;
-            this.buttonHelp.Text = "buttonHelp";
-            this.buttonHelp.UseVisualStyleBackColor = true;
-            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
+            this.ButtonToSmall.Location = new System.Drawing.Point(24, 27);
+            this.ButtonToSmall.Name = "ButtonToSmall";
+            this.ButtonToSmall.Size = new System.Drawing.Size(117, 25);
+            this.ButtonToSmall.TabIndex = 7;
+            this.ButtonToSmall.Text = "Руднична";
+            this.ButtonToSmall.UseVisualStyleBackColor = true;
+            this.ButtonToSmall.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // buttonToBig
+            // 
+            this.buttonToBig.Location = new System.Drawing.Point(25, 62);
+            this.buttonToBig.Name = "buttonToBig";
+            this.buttonToBig.Size = new System.Drawing.Size(116, 25);
+            this.buttonToBig.TabIndex = 8;
+            this.buttonToBig.Text = "1970";
+            this.buttonToBig.UseVisualStyleBackColor = true;
+            this.buttonToBig.Click += new System.EventHandler(this.buttonToBig_Click);
             // 
             // Form1
             // 
@@ -324,9 +321,9 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button save1;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.RadioButton radio70toM;
-        private System.Windows.Forms.RadioButton radioMto70;
         private System.Windows.Forms.Button buttonHelp;
+        private System.Windows.Forms.Button buttonToBig;
+        private System.Windows.Forms.Button ButtonToSmall;
     }
 }
 

@@ -1,33 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace Coordinates
 {
     public class Cord
     {
-        public double x { get; set; }
-        public double y { get; set; }
-        public double z { get; set; }
-        public string name { get; set; }
+        public string nameC { get; set; }
 
-        public string delimiter { get; set; }
+        public double xC { get; set; }
 
-        public Cord(string name, double x, double y, double z, string delimiter)
+        public double yC { get; set; }
+
+        public double zC { get; set; }
+
+        public Cord(string name, double x, double y, double z)
         {
-            this.name = name;
-            this.x = x;
-            this.y = y;
-            this.z = z;
-            this.delimiter = delimiter;
+            nameC = name;
+            xC = x;
+            yC = y;
+            zC = z;
+        }
 
-        }
-       public string CordPrint()
+        public static void Mto1970(List<Cord> CoordinatesList)
         {
-            return this.name+this.delimiter+this.x+this.delimiter+this.y+this.delimiter+this.z;
+            
+            for(int i = 0; i < CoordinatesList.Count; i++)
+            {
+                CoordinatesList[i].xC += 4580000;
+                CoordinatesList[i].yC += 9430000;
+              
+            }
+
+
+           
         }
+        public static IList<Cord> B70toM(List<Cord> CoordinatesList)
+        {
+
+            for (int i = 0; i < CoordinatesList.Count; i++)
+            {
+                CoordinatesList[i].xC -= 4580000;
+                CoordinatesList[i].yC -= 9430000;
+
+            }
+
+
+            return CoordinatesList;
+        }
+
+        public static string printCord(List<Cord> Cordinates, string delimiter, string newLine)
+        {
+
+            string output = "";
+            for (int i = 0; i < Cordinates.Count; i++)
+            {
+                output += Cordinates[i].nameC + delimiter + Cordinates[i].xC + delimiter + Cordinates[i].yC + delimiter + Cordinates[i].zC + newLine;
+            }
+            return output;
+        }
+
+
 
     }
+
 }
